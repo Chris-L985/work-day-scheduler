@@ -58,22 +58,23 @@ var hours = JSON.parse(localStorage.getItem("hoursState")) || [
 ];
 
 // display hours and notes in body
-var hourEl = hours.map((h, i) => {
-    var threeChar = h.timeEl.length === 3;
-    var past = h.timeValue < hour;
-    var present = h.timeValue === hour;
-    var future = h.timeValue > hour;
+let hourEl = hours.map((h, i) => {
+    let isThreeChar = h.timeEl.length === 3;
+    let isPast = h.timeValue < hour;
+    let isPresent = h.timeValue === hour;
+    let isFuture = h.timeValue > hour;
     // work scheduler in body
     return `
-        <div id="${`hours-${i}`}" class="row">
+        <div id="${`hour-${i}`}" class="row">
             <div class="hour">
-                ${threeChar ? `${h.timeEl} ` : h.timeEl}
+                ${isThreeChar ? `${h.timeEl}  ` : h.timeEl}
             </div>
             <textarea
-                class="textarea ${past && "past"} ${present && "present"} ${future && "future"}
-                ">${h.note}
+                class="textarea ${isPast ? "past" : ""} ${isPresent ? "present" : ""} ${isFuture ?  "future" : ""}"
+            >
+                ${h.note}
             </textarea>
-            <button class ="saveBtn">
+            <button class="saveBtn">
                 <i class="bi-save"></i>
             </button>
         </div>
@@ -82,3 +83,18 @@ var hourEl = hours.map((h, i) => {
 
 // container for hours and notes
 $("#container").empty().html(hourEl);
+
+// save task variable
+let saveTask = (index, value) => {
+    hours[index].note = value;
+    localStorage.setItem("hoursState", JSON.stringify(hours));
+};
+
+hours.map((_, i) => {
+    $(`#hour-${i} button`)
+        .off()
+        .click(() => {
+            let textAreaValue = $(`#hour-${i} textarea`).val();
+            saveTask(i, textAreaValue);
+    });
+});
