@@ -56,3 +56,29 @@ var hours = JSON.parse(localStorage.getItem("hoursState")) || [
         note: "", 
     },
 ];
+
+// display hours and notes in body
+var hourEl = hours.map((h, i) => {
+    var threeChar = h.timeEl.length === 3;
+    var past = h.timeValue < hour;
+    var present = h.timeValue === hour;
+    var future = h.timeValue > hour;
+    // work scheduler in body
+    return `
+        <div id="${`hours-${i}`}" class="row">
+            <div class="hour">
+                ${threeChar ? `${h.timeEl} ` : h.timeEl}
+            </div>
+            <textarea
+                class="textarea ${past && "past"} ${present && "present"} ${future && "future"}
+                ">${h.note}
+            </textarea>
+            <button class ="saveBtn">
+                <i class="bi-save"></i>
+            </button>
+        </div>
+    `;
+});
+
+// container for hours and notes
+$("#container").empty().html(hourEl);
