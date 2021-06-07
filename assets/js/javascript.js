@@ -70,9 +70,8 @@ let hourEl = hours.map((h, i) => {
                 ${isThreeChar ? `${h.timeEl}  ` : h.timeEl}
             </div>
             <textarea
-                class="textarea ${isPast ? "past" : ""} ${isPresent ? "present" : ""} ${isFuture ?  "future" : ""}"
-            >
-                ${h.note}
+                class="textarea ${isPast ? "past" :""} ${isPresent ? "present" :""} ${isFuture ?  "future" : ""}"
+            >${h.note}
             </textarea>
             <button class="saveBtn">
                 <i class="bi-save"></i>
