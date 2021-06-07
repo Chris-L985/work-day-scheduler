@@ -15,4 +15,4 @@ https://chris-l985.github.io/work-day-scheduler/
 Made by Chris Lopez
 
 ### Screenshot
-![image](https://user-images.githubusercontent.com/82353057/120141895-955daa00-c19a-11eb-890b-ba23dabb5fc2.png)
+![image](https://user-images.githubusercontent.com/82353057/120970073-2c40de00-c728-11eb-8915-7e50c9e4ad20.png)
